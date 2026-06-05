@@ -11,7 +11,7 @@ A curated FE Civil Exam preparation website developed by Mostafa Sameer, Ph.D. C
 
 ## Website
 Visit the live site:
-https://yourusername.github.io/fe-civil-resources/
+https://mostafasameer-transportation.github.io/fe-civil-resources/
 
 ## Author
 Mostafa Sameer
