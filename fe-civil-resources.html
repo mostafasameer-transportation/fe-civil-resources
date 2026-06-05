@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FE Civil Exam Resources — Mostafa Sameer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy: #0a1628;
+      --navy-mid: #12274d;
+      --navy-soft: #1c3566;
+      --accent: #c8a96e;
+      --accent-light: #e8d5a8;
+      --accent-pale: #f5efe0;
+      --steel: #4a6491;
+      --steel-light: #9eb3d4;
+      --white: #ffffff;
+      --off-white: #f9f7f2;
+      --text-main: #0d1f3c;
+      --text-muted: #5a6e8c;
+      --text-light: #8fa3be;
+      --border: rgba(10,22,40,0.08);
+      --shadow-card: 0 4px 24px rgba(10,22,40,0.08), 0 1px 4px rgba(10,22,40,0.04);
+      --shadow-hover: 0 12px 40px rgba(10,22,40,0.14), 0 2px 8px rgba(10,22,40,0.06);
+      --radius: 16px;
+      --radius-sm: 8px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--off-white);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ───────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(249,247,242,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      color: var(--navy);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-brand .monogram {
+      width: 34px; height: 34px;
+      background: var(--navy);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--navy); }
+
+    .nav-cta {
+      background: var(--navy);
+      color: var(--accent) !important;
+      padding: 7px 18px;
+      border-radius: 8px;
+      font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--navy-soft) !important; color: var(--accent-light) !important; }
+
+    /* ── HERO ──────────────────────────────── */
+    .hero {
+      background: var(--navy);
+      color: var(--white);
+      padding: 5rem 2.5rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,169,110,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 360px; height: 360px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(74,100,145,0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(200,169,110,0.15);
+      border: 1px solid rgba(200,169,110,0.3);
+      color: var(--accent-light);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      line-height: 1.12;
+      font-weight: 400;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.01em;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--steel-light);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-stat .num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .hero-stat .label {
+      font-size: 0.8rem;
+      color: var(--steel-light);
+      margin-top: 4px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .divider-stat {
+      width: 1px;
+      background: rgba(255,255,255,0.1);
+      height: 40px;
+      align-self: center;
+    }
+
+    /* ── VISITOR BANNER ─────────────────────── */
+    .visitor-banner {
+      background: var(--navy-mid);
+      border-bottom: 1px solid rgba(200,169,110,0.2);
+      padding: 0.75rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: var(--steel-light);
+      font-size: 0.875rem;
+    }
+
+    .visitor-banner .visitor-dot {
+      width: 8px; height: 8px;
+      background: #4caf50;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.3); }
+    }
+
+    .visitor-count {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* ── MAIN CONTENT ───────────────────────── */
+    main {
+      max-width: 1020px;
+      margin: 0 auto;
+      padding: 3.5rem 2rem 6rem;
+    }
+
+    .section-header {
+      margin-bottom: 2rem;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--navy);
+      line-height: 1.25;
+    }
+
+    .section-desc {
+      margin-top: 0.5rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* ── RESOURCE CARDS ─────────────────────── */
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .resource-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-card);
+      transition: box-shadow 0.25s, transform 0.25s;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .resource-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-3px);
+    }
+
+    .card-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.1rem;
+      font-size: 1.4rem;
+    }
+
+    .card-icon.blue  { background: #e8f0fe; }
+    .card-icon.amber { background: #fef3e2; }
+    .card-icon.teal  { background: #e0f4ef; }
+    .card-icon.rose  { background: #fce8ec; }
+
+    .card-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 100px;
+      margin-bottom: 0.6rem;
+    }
+
+    .tag-pdf   { background: #fee2e2; color: #991b1b; }
+    .tag-zip   { background: #fef3c7; color: #92400e; }
+    .tag-guide { background: #d1fae5; color: #065f46; }
+    .tag-ref   { background: #e0e7ff; color: #3730a3; }
+
+    .card-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+
+    .card-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .card-footer {
+      margin-top: 1.25rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-meta {
+      font-size: 0.78rem;
+      color: var(--text-light);
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--navy);
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .download-btn:hover { background: var(--navy-soft); }
+
+    .download-btn svg {
+      width: 14px; height: 14px;
+    }
+
+    /* ── ABOUT STRIP ────────────────────────── */
+    .about-strip {
+      background: var(--navy);
+      color: var(--white);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .about-avatar {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--steel), var(--navy-soft));
+      border: 3px solid rgba(200,169,110,0.4);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem;
+      color: var(--accent);
+    }
+
+    .about-content h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 0.3rem;
+    }
+
+    .about-content .role {
+      font-size: 0.82rem;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 0.85rem;
+    }
+
+    .about-content p {
+      font-size: 0.9rem;
+      color: var(--steel-light);
+      line-height: 1.7;
+      max-width: 580px;
+    }
+
+    .about-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 1rem;
+    }
+
+    .badge {
+      background: rgba(200,169,110,0.12);
+      border: 1px solid rgba(200,169,110,0.25);
+      color: var(--accent-light);
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: 100px;
+    }
+
+    /* ── EXAM TIPS ──────────────────────────── */
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .tip-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-card);
+      border-left: 3px solid var(--accent);
+    }
+
+    .tip-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      color: var(--accent-light);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .tip-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--navy);
+      margin-bottom: 0.4rem;
+    }
+
+    .tip-text {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── FOOTER ─────────────────────────────── */
+    footer {
+      background: var(--navy);
+      color: var(--steel-light);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.85rem;
+    }
+
+    footer .footer-name {
+      font-family: 'DM Serif Display', serif;
+      color: var(--accent);
+      font-size: 1rem;
+    }
+
+    footer p { margin-top: 0.5rem; }
+
+    /* ── DIVIDER ────────────────────────────── */
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 3rem 0;
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-brand">
+      <div class="monogram">MS</div>
+      FE Civil Hub
+    </a>
+    <ul class="nav-links">
+      <li><a href="#resources">Resources</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#tips">Study Tips</a></li>
+      <li><a href="#resources" class="nav-cta">Download All</a></li>
+    </ul>
+  </nav>
+
+  <!-- VISITOR BANNER -->
+  <div class="visitor-banner">
+    <span class="visitor-dot"></span>
+    <span>Total site visits: <span class="visitor-count" id="visitorCount">—</span></span>
+    &nbsp;·&nbsp;
+    <span>Your visit #<span class="visitor-count" id="thisVisit">—</span></span>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">FE Civil Exam Preparation</div>
+      <h1>
+        Master the<br/>
+        <em>FE Civil</em> Exam<br/>
+        with Confidence
+      </h1>
+      <p>
+        A curated study hub by <strong style="color:var(--white)">Mostafa Sameer</strong> — Ph.D. candidate in Civil &amp; Environmental Engineering at Florida International University. All essential materials in one place.
+      </p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="num">3</span>
+          <span class="label">Core Resources</span>
+        </div>
+        <div class="divider-stat"></div>
+        <div class="hero-stat">
+          <span class="num">800+</span>
+          <span class="label">Practice Problems</span>
+        </div>
+        <div class="divider-stat"></div>
+        <div class="hero-stat">
+          <span class="num">110</span>
+          <span class="label">Questions on Exam</span>
+        </div>
+        <div class="divider-stat"></div>
+        <div class="hero-stat">
+          <span class="num" id="visitorHeroCount">—</span>
+          <span class="label">Total Visitors</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- RESOURCES -->
+    <section id="resources">
+      <div class="section-header reveal">
+        <div class="section-label">Study Materials</div>
+        <h2 class="section-title">Official &amp; Practice Resources</h2>
+        <p class="section-desc">All materials are provided for personal exam preparation. Download and study at your own pace.</p>
+      </div>
+
+      <div class="resources-grid">
+
+        <!-- FE Handbook -->
+        <div class="resource-card reveal">
+          <div class="card-icon blue">📘</div>
+          <span class="card-tag tag-pdf">PDF · Official</span>
+          <h3 class="card-title">FE Reference Handbook 10.3</h3>
+          <p class="card-desc">
+            The official NCEES reference document permitted during the exam. Covers all knowledge areas: mathematics, statics, dynamics, fluid mechanics, structural analysis, geotechnical, and more.
+          </p>
+          <div class="card-footer">
+            <span class="card-meta">NCEES · v10.3</span>
+            <a href="fe-handbook-10-3.pdf" download class="download-btn">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 2v9M4 8l4 4 4-4"/><path d="M2 14h12"/>
+              </svg>
+              Download
+            </a>
+          </div>
+        </div>
+
+        <!-- Islam Review Book -->
+        <div class="resource-card reveal">
+          <div class="card-icon amber">📙</div>
+          <span class="card-tag tag-pdf">PDF · Textbook</span>
+          <h3 class="card-title">FE Civil Review — Islam (800 Solved Problems)</h3>
+          <p class="card-desc">
+            A comprehensive review book with over 800 worked examples. Systematically covers every FE Civil topic area, from structural to environmental engineering, with step-by-step solutions.
+          </p>
+          <div class="card-footer">
+            <span class="card-meta">Islam · 2018 Edition</span>
+            <a href="Islam_-_FE_Civil_Review__With_800_Solved_Problems__2018_.pdf" download class="download-btn">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 2v9M4 8l4 4 4-4"/><path d="M2 14h12"/>
+              </svg>
+              Download
+            </a>
+          </div>
+        </div>
+
+        <!-- Zip Package -->
+        <div class="resource-card reveal">
+          <div class="card-icon teal">🗂️</div>
+          <span class="card-tag tag-zip">ZIP · Bundle</span>
+          <h3 class="card-title">FE Civil Exam Resource Pack</h3>
+          <p class="card-desc">
+            A bundled archive of supplementary study materials, practice sets, formula sheets, and additional prep files. Unzip and organize into your study folder for easy access.
+          </p>
+          <div class="card-footer">
+            <span class="card-meta">Supplementary Pack</span>
+            <a href="FE_Civil_Exam_Zip.zip" download class="download-btn">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 2v9M4 8l4 4 4-4"/><path d="M2 14h12"/>
+              </svg>
+              Download
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="section-divider"/>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-header reveal">
+        <div class="section-label">About the Curator</div>
+        <h2 class="section-title">Who Built This</h2>
+      </div>
+
+      <div class="about-strip reveal">
+        <div class="about-avatar">S</div>
+        <div class="about-content">
+          <h3>Mostafa Sameer</h3>
+          <div class="role">Ph.D. Candidate · Florida International University</div>
+          <p>
+            Graduate Research Assistant in Civil &amp; Environmental Engineering at FIU, working under Dr. Wallied Orabi. My research spans bridge inspection analytics, infrastructure resilience, and transportation modeling. I compiled these FE Civil resources to help fellow engineers succeed on their licensure journey.
+          </p>
+          <div class="about-badges">
+            <span class="badge">FIU Civil Engineering</span>
+            <span class="badge">ASCE Member</span>
+            <span class="badge">Sigma Xi</span>
+            <span class="badge">Barnes &amp; Noble Graduate Scholar</span>
+            <span class="badge">Bridge Infrastructure</span>
+            <span class="badge">GIS &amp; Transportation</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider"/>
+
+    <!-- EXAM TIPS -->
+    <section id="tips">
+      <div class="section-header reveal">
+        <div class="section-label">Exam Strategy</div>
+        <h2 class="section-title">Study Tips for the FE Civil</h2>
+        <p class="section-desc">Practical advice for a 110-question, 5 hour 20 minute computer-based exam.</p>
+      </div>
+
+      <div class="tips-grid">
+        <div class="tip-card reveal">
+          <div class="tip-num">01</div>
+          <div class="tip-title">Know the Handbook Cold</div>
+          <p class="tip-text">The FE Reference Handbook is your only allowed resource. Practice navigating it quickly under timed conditions so you can locate formulas in seconds.</p>
+        </div>
+        <div class="tip-card reveal">
+          <div class="tip-num">02</div>
+          <div class="tip-title">Weight Your Study Time</div>
+          <p class="tip-text">Focus on Mathematics, Statics, Structural Analysis, and Geotechnical Engineering — they carry the most questions. Don't neglect Transportation and Environmental.</p>
+        </div>
+        <div class="tip-card reveal">
+          <div class="tip-num">03</div>
+          <div class="tip-title">Practice Timed Sets</div>
+          <p class="tip-text">With ~2.9 minutes per question, simulate exam conditions. Use the 800 solved problems book to build speed and accuracy simultaneously.</p>
+        </div>
+        <div class="tip-card reveal">
+          <div class="tip-num">04</div>
+          <div class="tip-title">Flag &amp; Return</div>
+          <p class="tip-text">Never get stuck. Flag difficult questions and return to them. First-pass efficiency often determines whether you finish the exam in time.</p>
+        </div>
+        <div class="tip-card reveal">
+          <div class="tip-num">05</div>
+          <div class="tip-title">Units &amp; Conversions</div>
+          <p class="tip-text">Most errors on the FE Civil come from unit mistakes. Build the habit of tracking units at every step, especially in fluid mechanics and statics problems.</p>
+        </div>
+        <div class="tip-card reveal">
+          <div class="tip-num">06</div>
+          <div class="tip-title">Use NCEES Practice Exam</div>
+          <p class="tip-text">The official NCEES practice exam is the closest simulation. Take it under full exam conditions at least two weeks before your test date to calibrate.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-name">Mostafa Sameer</div>
+    <p>Ph.D. Candidate, Civil &amp; Environmental Engineering · Florida International University, Miami, FL</p>
+    <p style="margin-top: 0.75rem; font-size: 0.78rem; color: var(--steel);">
+      Resources compiled for academic exam preparation purposes only. All materials remain property of their respective publishers.
+    </p>
+  </footer>
+
+  <script>
+    // ── VISITOR COUNTER ─────────────────────────────────────────────────────
+    // Uses localStorage to track unique visits with a persistent total count.
+    // In a real deployment, replace this with a backend API call (e.g., a
+    // serverless function writing to a database) for cross-device accuracy.
+
+    function getVisitorData() {
+      try {
+        const raw = localStorage.getItem('fe_civil_visitor_data');
+        return raw ? JSON.parse(raw) : null;
+      } catch { return null; }
+    }
+
+    function saveVisitorData(data) {
+      try { localStorage.setItem('fe_civil_visitor_data', JSON.stringify(data)); } catch {}
+    }
+
+    function initVisitorCounter() {
+      let data = getVisitorData();
+      let totalCount, myVisitNumber;
+
+      if (!data) {
+        // First ever visitor on this browser
+        totalCount = 1;
+        myVisitNumber = 1;
+        saveVisitorData({ total: 1, myVisits: 1 });
+      } else {
+        totalCount = (data.total || 0) + 1;
+        myVisitNumber = (data.myVisits || 0) + 1;
+        saveVisitorData({ total: totalCount, myVisits: myVisitNumber });
+      }
+
+      // Animate count-up for a polished effect
+      animateCount('visitorCount', totalCount);
+      animateCount('visitorHeroCount', totalCount);
+      document.getElementById('thisVisit').textContent = myVisitNumber.toLocaleString();
+    }
+
+    function animateCount(id, target) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const duration = 1200;
+      const start = performance.now();
+      const startVal = 0;
+      function step(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(startVal + (target - startVal) * eased).toLocaleString();
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    // ── SCROLL REVEAL ───────────────────────────────────────────────────────
+    function setupReveal() {
+      const els = document.querySelectorAll('.reveal');
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((e, i) => {
+          if (e.isIntersecting) {
+            setTimeout(() => e.target.classList.add('visible'), i * 60);
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      els.forEach(el => obs.observe(el));
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initVisitorCounter();
+      setupReveal();
+    });
+  </script>
+
+</body>
+</html>
