@@ -747,53 +747,27 @@
     // In a real deployment, replace this with a backend API call (e.g., a
     // serverless function writing to a database) for cross-device accuracy.
 
-    function getVisitorData() {
-      try {
-        const raw = localStorage.getItem('fe_civil_visitor_data');
-        return raw ? JSON.parse(raw) : null;
-      } catch { return null; }
-    }
+ async function updateVisitorCount() {
+  try {
+    const response = await fetch(
+      'https://api.countapi.xyz/hit/mostafa-fe-civil/visits'
+    );
 
-    function saveVisitorData(data) {
-      try { localStorage.setItem('fe_civil_visitor_data', JSON.stringify(data)); } catch {}
-    }
+    const data = await response.json();
 
-    function initVisitorCounter() {
-      let data = getVisitorData();
-      let totalCount, myVisitNumber;
+    document.getElementById('visitorCount').textContent =
+      data.value.toLocaleString();
 
-      if (!data) {
-        // First ever visitor on this browser
-        totalCount = 1;
-        myVisitNumber = 1;
-        saveVisitorData({ total: 1, myVisits: 1 });
-      } else {
-        totalCount = (data.total || 0) + 1;
-        myVisitNumber = (data.myVisits || 0) + 1;
-        saveVisitorData({ total: totalCount, myVisits: myVisitNumber });
-      }
+    document.getElementById('visitorHeroCount').textContent =
+      data.value.toLocaleString();
 
-      // Animate count-up for a polished effect
-      animateCount('visitorCount', totalCount);
-      animateCount('visitorHeroCount', totalCount);
-      document.getElementById('thisVisit').textContent = myVisitNumber.toLocaleString();
-    }
+    document.getElementById('thisVisit').textContent =
+      data.value.toLocaleString();
 
-    function animateCount(id, target) {
-      const el = document.getElementById(id);
-      if (!el) return;
-      const duration = 1200;
-      const start = performance.now();
-      const startVal = 0;
-      function step(now) {
-        const elapsed = now - start;
-        const progress = Math.min(elapsed / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        el.textContent = Math.round(startVal + (target - startVal) * eased).toLocaleString();
-        if (progress < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    }
+  } catch (error) {
+    console.error('Visitor counter error:', error);
+  }
+}
 
     // ── SCROLL REVEAL ───────────────────────────────────────────────────────
     function setupReveal() {
@@ -809,10 +783,10 @@
       els.forEach(el => obs.observe(el));
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      initVisitorCounter();
-      setupReveal();
-    });
+document.addEventListener('DOMContentLoaded', () => {
+  updateVisitorCount();
+  setupReveal();
+});
   </script>
 
 <script>
